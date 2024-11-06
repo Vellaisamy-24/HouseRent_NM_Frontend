@@ -4,11 +4,11 @@ import React, { useState } from "react";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const login = async (e) => {
+  const sigup = async (e) => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost:3500/api/user/signup",
+        `${import.meta.env.VITE_BASEURL}/user/signup`,
         { email, password }
       );
       console.log(response);
@@ -18,7 +18,7 @@ const Signup = () => {
   };
   return (
     <section>
-      <form onSubmit={(e) => login(e)}>
+      <form onSubmit={(e) => sigup(e)}>
         <h1>SignUp</h1>
         <input
           type="email"

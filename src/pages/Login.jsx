@@ -14,6 +14,11 @@ const Login = () => {
           password,
         }
       );
+      console.log(response.data);
+      console.log(response.data.token, "login token");
+      localStorage.setItem("JWTToken", response.data?.token);
+      localStorage.setItem("isAdmin", response.data?.isAdmin);
+      console.log(response.data.isAdmin, "admin Status");
       console.log(response);
     } catch (error) {
       console.log(error);
