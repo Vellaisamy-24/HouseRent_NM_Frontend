@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "../store/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const login = async (e) => {
     e.preventDefault();
     try {
@@ -16,9 +19,16 @@ const Login = () => {
       );
       console.log(response.data);
       console.log(response.data.token, "login token");
-      localStorage.setItem("JWTToken", response.data?.token);
-      localStorage.setItem("isAdmin", response.data?.isAdmin);
+      // localStorage.setItem("JWTToken", response.data?.token);
+      // localStorage.setItem("isAdmin", response.data?.isAdmin);
       console.log(response.data.isAdmin, "admin Status");
+      dispatch(
+        logIn({
+          email: response.data?.user?.email,
+          _id: response.data?.user?._id,
+          token:response?.data?.token
+        })
+      );
       console.log(response);
     } catch (error) {
       console.log(error);

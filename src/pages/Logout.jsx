@@ -3,8 +3,8 @@ import React from "react";
 const Logout = () => {
   const log = () => {
     try {
-      localStorage.removeItem("JWTToken");
-      localStorage.removeItem("isAdmin");
+      // localStorage.removeItem("JWTToken");
+      // localStorage.removeItem("isAdmin");
     } catch (error) {
       console.log(error);
     }
