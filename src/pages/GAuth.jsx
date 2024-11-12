@@ -2,6 +2,7 @@ import React from "react";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../FirebaseConfig";
 import axios from "axios";
+import { FaGoogle } from "react-icons/fa";
 const GAuth = () => {
   const GoogleAuth = async () => {
     try {
@@ -25,8 +26,13 @@ const GAuth = () => {
     }
   };
   return (
-    <div>
-      <button onClick={GoogleAuth}>Goolge Login</button>
+    <div className="flex items-center  mx-auto">
+      <button
+        onClick={GoogleAuth}
+        className="border flex items-center gap-2 p-2 text-sm rounded-lg"
+      >
+        <FaGoogle className="text-yellow-400" /> Login with Google
+      </button>
     </div>
   );
 };

@@ -3,9 +3,13 @@ import Users from "./Users";
 import SideNavbar from "./SideNavbar";
 
 const Dashboard = () => {
-  const [view, setView] = useState(false);
-  const user = () => {
-    setView(!view);
+  // const [view, setView] = useState(false);
+  const [view, setView] = useState("Users");
+  // const user = () => {
+  //   setView(!view);
+  // };
+  const handleViewChange = (newView) => {
+    setView(newView);
   };
   return (
     <div>
@@ -17,7 +21,7 @@ const Dashboard = () => {
       {view && <Users />} */}
       {/* <Users /> */}
       <section className="sm:pt-11">
-        <SideNavbar />
+        <SideNavbar onViewChange={handleViewChange} />
       </section>
     </div>
   );

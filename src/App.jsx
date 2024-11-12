@@ -8,20 +8,32 @@ import Home from "./pages/Home";
 import Properties from "./property/Properties";
 import CreateProperty from "./property/CreateProperty";
 import ViewProperty from "./property/ViewProperty";
+import Profile from "./pages/Profile";
+import MobileNavbar from "./components/MobileNavbar";
+import Navbar from "./components/Navbar";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <div>
+      <Toaster position="top-center" />
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/createProperty" element={<CreateProperty />} />
           <Route path="/property/:id" element={<ViewProperty />} />
         </Routes>
+        <div className="hidden sm:flex z-10 py-3 top-0 w-full border-b bg-white fixed">
+          <Navbar />
+        </div>
+        <div className="sm:hidden fixed bottom-0 border-t py-3 w-full bg-white">
+          <MobileNavbar />
+        </div>
       </Router>
     </div>
   );
