@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { storage } from "../FirebaseConfig";
 import { v4 } from "uuid";
+import { ChevronLeft } from "lucide-react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const CreateProperty = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -23,8 +26,9 @@ const CreateProperty = () => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost:3500/api/property/createProperty",
+        `${import.meta.env.VITE_BASEURL}/property/createProperty`,
         {
+          email: user?.email,
           title,
           description,
           price,
@@ -33,16 +37,27 @@ const CreateProperty = () => {
           parking,
           isAvailable,
           furnished,
-          area,images,
+          area,
+          images,
           address,
           owner: user._id,
         }
       );
       console.log(response);
       console.log(response.data);
+      setTimeout(() => {
+        toast.success("Property Created");
+      }, 300);
     } catch (error) {
       console.log(error.message);
+      setTimeout(() => {
+        toast.error(error.message);
+      }, 300);
     }
+  };
+  const navigate = useNavigate();
+  const back = () => {
+    navigate(-1);
   };
   const imageUpload = async (e) => {
     try {
@@ -61,116 +76,137 @@ const CreateProperty = () => {
     setImages(delteImages);
   };
   return (
-    <form onSubmit={(e) => createProperty(e)}>
-      {user && user._id}
-      <div className="flex gap-2">
-        <h1>Title</h1>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 "
-          type="text"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Description</h1>
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="border p-2 "
-          type="text"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Address</h1>
-        <input
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="border p-2 "
-          type="text"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Furished</h1>
-        <input
-          checked={furnished}
-          onChange={(e) => setFurnished(e.target.checked)}
-          className="border p-2 "
-          type="checkbox"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Price</h1>
-        <input
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          className="border p-2 "
-          type="tel"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Area</h1>
-        <input
-          value={area}
-          onChange={(e) => setArea(e.target.value)}
-          className="border p-2 "
-          type="text"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>BedRoom</h1>
-        <input
-          value={bedRoom}
-          onChange={(e) => setBedRoom(Number(e.target.value))}
-          className="border p-2 "
-          type="tel"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>BathRoom</h1>
-        <input
-          value={bathRoom}
-          onChange={(e) => setBathRoom(Number(e.target.value))}
-          className="border p-2 "
-          type="tel"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Parking</h1>
-        <input
-          checked={parking}
-          onChange={(e) => setParking(e.target.checked)}
-          className="border p-2 "
-          type="checkbox"
-        />
-      </div>
-      <div className="flex gap-2">
-        <h1>Avaiable</h1>
-        <input
-          type="checkbox"
-          checked={isAvailable}
-          onChange={(e) => setIsAvailable(e.target.checked)}
-          className="border p-2 "
-        />
-      </div>
-      <button className="border p-2 rounded-lg" type="submit">
-        Create
-      </button>
-      <div>
-        <h1>Images</h1>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-        <button onClick={(e) => imageUpload(e)} type="button">
-          Upload
-        </button>
-      </div>
-      {images &&
-        images.map((data, index) => (
-          <div className="w-16 h-16" key={index}>
-            <img src={data} alt="imgage" />
-            <button onClick={(e) => deleteImage(data)}>Delete</button>
+    <section className="p-3 pb-16 sm:py-20 py-10">
+      <form
+        className="border h-auto flex flex-col gap-7 rounded-xl shadow-lg p-3"
+        onSubmit={(e) => createProperty(e)}
+      >
+        <div className="flex">
+          <button
+            onClick={back}
+            className=" bg-white hover:border-slate-400 hover:cursor-pointer  drop-shadow-sm gap-1 border text-orange-400 flex items-center p-1 px-2 rounded-lg  "
+          >
+            <ChevronLeft />
+            Back
+          </button>
+          <h1 className="text-center flex items-center  mx-auto">
+            Create Property
+          </h1>
+        </div>
+        {/* {user && user._id} */}
+        <div className="flex items-center gap-2">
+          <h1>Title</h1>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="border p-2 rounded-lg border-slate-300 outline-none"
+            type="text"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <h1>Description</h1>
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="border p-2  rounded-lg border-slate-300 outline-none"
+            type="text"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <h1>Address</h1>
+          <input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="border rounded-lg border-slate-300 p-2 outline-none"
+            type="text"
+          />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <h1>Price</h1>
+          <input
+            value={price}
+            onChange={(e) => setPrice(Number(e.target.value))}
+            className="border p-2 rounded-lg border-slate-300 outline-none"
+            type="tel"
+          />
+        </div>
+        <div className="flex  items-center gap-2">
+          <h1>Area</h1>
+          <input
+            value={area}
+            onChange={(e) => setArea(e.target.value)}
+            className="border p-2 rounded-lg border-slate-300 outline-none "
+            type="text"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <h1>BedRoom</h1>
+          <input
+            value={bedRoom}
+            onChange={(e) => setBedRoom(Number(e.target.value))}
+            className="border p-2 rounded-lg border-slate-300 outline-none "
+            type="tel"
+          />
+        </div>
+        <div className="flex items-center  gap-2">
+          <h1>BathRoom</h1>
+          <input
+            value={bathRoom}
+            onChange={(e) => setBathRoom(Number(e.target.value))}
+            className="border p-2 outline-none rounded-lg border-slate-300"
+            type="tel"
+          />
+        </div>
+        <div className="flex flex-col sm:flex-row gap-5 justify-between border w-1/2 rounded-lg p-3 ">
+          <div className="flex items-center gap-2">
+            <input
+              checked={furnished}
+              onChange={(e) => setFurnished(e.target.checked)}
+              className="border p-2 rounded-lg border-slate-300 outline-none"
+              type="checkbox"
+            />
+            <h1>Furished</h1>
           </div>
-        ))}
-    </form>
+          <div className="flex items-center gap-2">
+            <input
+              checked={parking}
+              onChange={(e) => setParking(e.target.checked)}
+              className="border p-2 rounded-lg border-slate-300  outline-none"
+              type="checkbox"
+            />
+            <h1>Parking</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={isAvailable}
+              onChange={(e) => setIsAvailable(e.target.checked)}
+              className="border p-2  rounded-lg border-slate-300 outline-none "
+            />
+            <h1>Available</h1>
+          </div>
+        </div>
+
+        <div>
+          <h1>Images</h1>
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          <button onClick={(e) => imageUpload(e)} type="button">
+            Upload
+          </button>
+        </div>
+        {images &&
+          images.map((data, index) => (
+            <div className="w-16 h-16 flex items-center " key={index}>
+              <img src={data} alt="imgage" className="object-cover" />
+              <button onClick={(e) => deleteImage(data)}>Delete</button>
+            </div>
+          ))}
+        <button className="border items-center p-2 rounded-lg" type="submit">
+          Create
+        </button>
+      </form>
+    </section>
   );
 };
 

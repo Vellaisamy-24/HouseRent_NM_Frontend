@@ -12,6 +12,8 @@ import Profile from "./pages/Profile";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
+import AllProperties from "./admin/AllProperties";
+import YourProperties from "./property/YourProperties";
 const App = () => {
   return (
     <div>
@@ -22,10 +24,15 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/admin/users" element={<Users />} />
+          <Route path="/admin/dashboard/users" element={<Users />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route
+            path="/admin/dashboard/properties"
+            element={<AllProperties />}
+          />
           <Route path="/properties" element={<Properties />} />
           <Route path="/createProperty" element={<CreateProperty />} />
+          <Route path="/yourProperties" element={<YourProperties />} />
           <Route path="/property/:id" element={<ViewProperty />} />
         </Routes>
         <div className="hidden sm:flex z-10 py-3 top-0 w-full border-b bg-white fixed">

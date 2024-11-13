@@ -1,39 +1,43 @@
 import React from "react";
 import Home from "../assets/HouseLogo.png";
+import house7 from "../assets/house7.jpg";
+import house8 from "../assets/house8.jpg";
+import house9 from "../assets/real-estate-10.jpg";
 
 const Slider = () => {
   const images = [
     {
       id: 1,
-      title: "Flat 20% Offer",
+      title: "Spacious 2BHK Apartment",
       name: Home,
     },
     {
       id: 2,
-      title: "Flat 20% Offer",
-      name: Home,
+      title: "Modern Studio Flat",
+      name: house7,
     },
     {
       id: 3,
-      title: "Flat 20% Offer",
-      name: Home,
+      title: "Luxury Villa with Pool",
+      name: house8,
     },
     {
       id: 4,
-      title: "Flat 20% Offer",
-      name: Home,
-    },
-    {
-      id: 4,
-      title: "Flat 20% Offer",
-      name: Home,
+      title: "Cozy 1BHK in Downtown",
+      name: house9,
     },
     {
       id: 5,
-      title: "Flat 20% Offer",
+      title: "Penthouse with Sea View",
+      name: Home,
+    },
+    {
+      id: 6,
+      title: "Affordable 3BHK Near Park",
       name: Home,
     },
   ];
+
   return (
     <div className="px-5">
       <div className="flex relative overflow-x-auto  rounded-2xl">
@@ -44,7 +48,7 @@ const Slider = () => {
           <div key={index} className="flex-shrink-0 w-full relative">
             <img
               src={data.name}
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-full object-cover rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black w-24 opacity-20 via-transparent to-transparent rounded-md" />
             <div className="absolute inset-0 bg-gradient-to-tl from-black  opacity-30 via-transparent to-transparent rounded-md" />

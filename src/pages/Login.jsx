@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../store/slices/userSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import GAuth from "./GAuth";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const login = async (e) => {
     e.preventDefault();
     try {
@@ -34,9 +35,13 @@ const Login = () => {
         })
       );
       console.log(response);
+
       setTimeout(() => {
         toast.success(response?.data?.message);
       }, 300);
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
     } catch (error) {
       console.log(error);
       setTimeout(() => {
@@ -47,7 +52,7 @@ const Login = () => {
   return (
     <section className=" flex  items-center justify-center min-h-screen ">
       <form
-        className="border flex flex-col gap-5 p-5 rounded-lg shadow-lg"
+        className="border flex flex-col gap-5  sm:p-10  p-5 rounded-lg shadow-lg"
         onSubmit={(e) => login(e)}
       >
         <h1>Login</h1>

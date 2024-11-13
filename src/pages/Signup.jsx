@@ -28,7 +28,7 @@ const Signup = () => {
     <>
       <section className=" flex  items-center justify-center min-h-screen ">
         <form
-          className="border flex flex-col gap-5 p-5 rounded-lg shadow-lg"
+          className="border flex flex-col gap-5 p-5 sm:p-10  rounded-lg shadow-lg"
           onSubmit={(e) => sigup(e)}
         >
           <h1>Signup</h1>
