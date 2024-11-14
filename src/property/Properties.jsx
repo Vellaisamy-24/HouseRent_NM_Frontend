@@ -33,7 +33,7 @@ const Properties = () => {
         />
       </div> */}
       <div className="sm:p-10 sm:py-16 px-5">
-        <div className=" hidden sm:flex  w-full  h-[500px] overflow-hidden  relative">
+        <div className=" hidden relative sm:flex  w-full  h-[500px] overflow-hidden  relative">
           <img
             className=" w-full rounded-3xl shadow-lg h-full  object-cover"
             src={Home}
@@ -43,14 +43,17 @@ const Properties = () => {
           <div className="absolute inset-0 bg-gradient-to-tr from-black  opacity-30 via-transparent to-transparent rounded-md" />
           <div className="absolute inset-0 bg-gradient-to-bl from-black  opacity-30 via-transparent to-transparent rounded-md" />
         </div>
-        <div className="sm:flex hidden absolute  p-2 inset-0 items-center justify-center">
+        {/* <div className="sm:flex hidden absolute  p-2 inset-0 items-center justify-center">
           <input type="text" className=" rounded-lg outline-none p-3" />
           <label>Search</label>
-        </div>
+        </div> */}
+      
       </div>
-<div className="px-5">
-  <h1 className="font-medium hidden sm:flex  text-lg ">Explore Properties</h1>
-</div>
+      <div className="px-5">
+        <h1 className="font-medium hidden sm:flex  text-lg ">
+          Explore Properties
+        </h1>
+      </div>
       <section className="py-10 flex flex-wrap gap-4">
         {property.length > 0 &&
           property.map((data, index) => (

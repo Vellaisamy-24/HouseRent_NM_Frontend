@@ -14,6 +14,10 @@ import Navbar from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
 import AllProperties from "./admin/AllProperties";
 import YourProperties from "./property/YourProperties";
+import Search from "./pages/Search";
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
     <div>
@@ -34,6 +38,7 @@ const App = () => {
           <Route path="/createProperty" element={<CreateProperty />} />
           <Route path="/yourProperties" element={<YourProperties />} />
           <Route path="/property/:id" element={<ViewProperty />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         <div className="hidden sm:flex z-10 py-3 top-0 w-full border-b bg-white fixed">
           <Navbar />

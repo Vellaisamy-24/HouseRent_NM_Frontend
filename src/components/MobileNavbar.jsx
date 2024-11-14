@@ -22,9 +22,9 @@ const MobileNavbar = () => {
       <button onClick={() => navigate("/")}>
         <House />
       </button>
-      <button>
+      <Link to="/search">
         <Search />
-      </button>
+      </Link>
       {user && user.email ? (
         <button onClick={() => navigate("/profile")}>
           <User />

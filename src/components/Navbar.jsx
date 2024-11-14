@@ -30,13 +30,12 @@ const Navbar = () => {
         ) : (
           <Link to="/login">Login</Link>
         )}
+        <Link to="/search">Search</Link>
         {user && user.email && <Link to="/profile">Profile</Link>}
         {user && user.email && (
           <Link to="/createProperty">Create Property</Link>
         )}
-        {user && user.email && (
-          <Link to="/yourProperties">Your Property</Link>
-        )}
+        {user && user.email && <Link to="/yourProperties">Your Property</Link>}
 
         {/* {user && user.email} */}
       </div>
