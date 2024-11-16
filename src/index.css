@@ -6,3 +6,8 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+h1 {
+  text-decoration: none;
+}
+

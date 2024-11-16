@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../store/slices/userSlice";
 import toast from "react-hot-toast";
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const signOut = () => {
     dispatch(logOut());
     setTimeout(() => {
+      navigate("/");
       toast.success("Logout success");
     }, 300);
   };
@@ -36,6 +38,7 @@ const Navbar = () => {
           <Link to="/createProperty">Create Property</Link>
         )}
         {user && user.email && <Link to="/yourProperties">Your Property</Link>}
+        {user && user.email && <Link to="/yourBookings">Your Bookings</Link>}
 
         {/* {user && user.email} */}
       </div>

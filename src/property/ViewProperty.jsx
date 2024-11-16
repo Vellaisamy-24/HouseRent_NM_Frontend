@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import {
   House,
@@ -9,6 +9,7 @@ import {
   ParkingCircle,
   ParkingCircleOff,
 } from "lucide-react";
+import { useSelector } from "react-redux";
 import { Mail } from "lucide-react";
 import { LandPlot } from "lucide-react";
 import { CircleParking } from "lucide-react";
@@ -16,7 +17,7 @@ import { CircleParkingOff } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { GiPaintRoller, GiRupee } from "react-icons/gi";
 import { TbPaintOff } from "react-icons/tb";
-
+import { toast } from "react-hot-toast";
 const ViewProperty = () => {
   const { id } = useParams();
   useEffect(() => {
@@ -56,6 +57,12 @@ const ViewProperty = () => {
   const navigate = useNavigate();
   const back = () => {
     navigate(-1);
+  };
+  const user = useSelector((state) => state.user.user);
+  const login = () => {
+    setTimeout(() => {
+      toast.error("Please login to Book");
+    }, 300);
   };
   return (
     <div className="w-full ">
@@ -133,6 +140,14 @@ const ViewProperty = () => {
           <a href={`mailto:${email}`} className="flex items-center gap-2">
             <Mail /> Contact
           </a>
+          {user && user._id ? (
+            <Link to={`/bookProperty/${user._id}/${id}/${price}`}>
+              Book Now
+            </Link>
+          ) : (
+            <button onClick={login}>Book Now</button>
+          )}
+          <form></form>
         </div>
       </div>
     </div>

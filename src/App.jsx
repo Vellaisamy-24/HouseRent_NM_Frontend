@@ -15,6 +15,10 @@ import { Toaster } from "react-hot-toast";
 import AllProperties from "./admin/AllProperties";
 import YourProperties from "./property/YourProperties";
 import Search from "./pages/Search";
+import BookProperty from "./property/BookProperty";
+import YourBookings from "./property/YourBookings";
+import AllBookings from "./admin/AllBookings";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,7 +33,11 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin/dashboard/users" element={<Users />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+
+          <Route
+            path="/bookProperty/:userId/:propertyId/:price"
+            element={<BookProperty />}
+          />
           <Route
             path="/admin/dashboard/properties"
             element={<AllProperties />}
@@ -37,8 +45,12 @@ const App = () => {
           <Route path="/properties" element={<Properties />} />
           <Route path="/createProperty" element={<CreateProperty />} />
           <Route path="/yourProperties" element={<YourProperties />} />
+          <Route path="/yourBookings" element={<YourBookings />} />
+
           <Route path="/property/:id" element={<ViewProperty />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/dashboard/allBookings" element={<AllBookings />} />
         </Routes>
         <div className="hidden sm:flex z-10 py-3 top-0 w-full border-b bg-white fixed">
           <Navbar />

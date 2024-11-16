@@ -11,6 +11,7 @@ const SideNavbar = ({ onViewChange }) => {
     { title: "Users", view: "Users" },
     { title: "Properties", view: "Properties" },
     { title: "Owners", view: "Owners" },
+    { title: "Bookings", view: "Bookings" },
   ];
 
   return (

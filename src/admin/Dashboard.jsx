@@ -104,9 +104,9 @@ const Dashboard = () => {
           </Link>
           <Link
             className="border-b w-full  items-center flex justify-center p-2  hover:underline flex flex-nowrap rounded-lg"
-            to="/admin/dashboard/properties"
+            to="/admin/dashboard/allBookings"
           >
-            All Property
+            All Bookings
           </Link>
           <Link
             className="border-b w-full  items-center flex justify-center hover:underline p-2 rounded-lg"
